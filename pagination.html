@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Pagination-task</title>
+
+        <style>
+            table ,td{
+                border: 1px solid black;
+                border-collapse: collapse;
+                padding: 9px;
+            }
+            a{
+                text-decoration: none;
+            }
+            a.active {
+                background-color: dodgerblue;
+                color: white;
+            }
+        </style>
+    </head>
+    <body>
+
+        
+
+        <script>
+
+            let newDiv = document.createElement("div");
+            newDiv.setAttribute("id","jsonData");
+            document.body.appendChild(newDiv);
+
+            let j = 2;
+
+            let change = document.createElement("div");
+                change.textContent = `change : ${j-1}`;
+                document.body.appendChild(change);
+
+            let table = document.createElement("table");
+            let ftd = document.createElement("td");
+            let atd = document.createElement("a");
+            atd.setAttribute("href","#");
+            atd.setAttribute("id","1");
+            atd.textContent = "First";
+            ftd.append(atd);
+
+            let ptd = document.createElement("td");
+                let newtd = document.createElement("a");
+                newtd.setAttribute("href", "#");
+                newtd.textContent = "Previous";
+                ptd.appendChild(newtd);
+                table.append(ftd, ptd);
+
+            
+            
+
+            table.addEventListener("click",()=>{
+                let id = document.getElementById("a").id;
+                
+            })
+
+    
+
+            fetch("pagination.json")
+            .then (function (response){
+                return response.json();
+            })
+            .then (function (data){
+                appendData(data);
+            })
+
+            function appendData(data){
+                let main = document.getElementById('jsonData');
+                for(let i=0;i<j;i++){
+                    if(i==j-2){
+                        let div1 = document.createElement("div");
+                        let div2 = document.createElement("div");
+                        div1.innerHTML="Name :" + data[i].name;
+                        div2.innerHTML="email : " + data[i].email;
+                        main.append(div1,div2);
+                    }
+                }
+            }
+            let k=j;
+            while (k <= 10) {
+                    let ptd = document.createElement("td");
+                    let newtd = document.createElement("a");
+                    newtd.setAttribute("href", `#`);
+                    newtd.setAttribute("id", `${k}`);
+                    newtd.textContent = k;
+                    ptd.appendChild(newtd);
+                    table.appendChild(ptd);
+                    k++;
+                }
+
+                document.body.appendChild(table);
+        </script>
+    </body>
+</html>
