@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Pagination-task</title>
+
+        <style>
+            table ,td{
+                border: 1px solid black;
+                border-collapse: collapse;
+                padding: 9px;
+            }
+            td:hover{
+                background-color: rgb(224, 215, 203);
+            }
+            a{
+                text-decoration: none;
+            }
+            td.active {
+                background-color: dodgerblue;
+                color: white;
+            }
+            td.active a{
+                color: white;
+            }
+        </style>
+    </head>
+    <body>
+
+        
+
+        <script>
+
+            let newDiv = document.createElement("div");
+            newDiv.setAttribute("id","jsonData");
+            
+
+            let j = 0;
+            let l=0;
+
+
+            let table = document.createElement("table");
+            let ftd = document.createElement("td");
+            let atd = document.createElement("a");
+            atd.setAttribute("href","#");
+            atd.setAttribute("id","one");
+            atd.textContent = "First";
+            ftd.append(atd);
+
+            let ptd = document.createElement("td");
+            let newtd = document.createElement("a");
+            newtd.setAttribute("href", "#");
+            newtd.setAttribute("id","pre");
+            newtd.textContent = "Previous";
+            ptd.appendChild(newtd);
+            table.append(ftd, ptd);
+
+            let Otd = document.createElement("td");
+            let Oatd = document.createElement("a");
+            Oatd.setAttribute("href", `#`);
+            Oatd.setAttribute("id", "2");
+            Oatd.textContent = 2;
+            Otd.appendChild(Oatd);
+            table.appendChild(Otd);
+            
+            let Ttd = document.createElement("td");
+            let Tatd = document.createElement("a");
+            Tatd.setAttribute("href", `#`);
+            Tatd.setAttribute("id", "3");
+            Tatd.textContent = 3;
+            Ttd.appendChild(Tatd);
+            table.appendChild(Ttd);
+            
+            let Htd = document.createElement("td");
+            let Hatd = document.createElement("a");
+            Hatd.setAttribute("href", `#`);
+            Hatd.setAttribute("id", "4");
+            Hatd.textContent = 4;
+            Htd.appendChild(Hatd);
+            table.appendChild(Htd);
+            
+            let fitd = document.createElement("td");
+            let fiatd = document.createElement("a");
+            fiatd.setAttribute("href", `#`);
+            fiatd.setAttribute("id", "5");
+            fiatd.textContent = 5;
+            fitd.appendChild(fiatd);
+            table.appendChild(fitd);
+            
+            let sitd = document.createElement("td");
+            let siatd = document.createElement("a");
+            siatd.setAttribute("href", `#`);
+            siatd.setAttribute("id", "6");
+            siatd.textContent = 6;
+            sitd.appendChild(siatd);
+            table.appendChild(sitd);
+            
+            let Std = document.createElement("td");
+            let Satd = document.createElement("a");
+            Satd.setAttribute("href", `#`);
+            Satd.setAttribute("id", "7");
+            Satd.textContent = 7;
+            Std.appendChild(Satd);
+            table.appendChild(Std);
+            
+            let Etd = document.createElement("td");
+            let Eatd = document.createElement("a");
+            Eatd.setAttribute("href", `#`);
+            Eatd.setAttribute("id", "8");
+            Eatd.textContent = 8;
+            Etd.appendChild(Eatd);
+            table.appendChild(Etd);
+            
+            let Ntd = document.createElement("td");
+            let Natd = document.createElement("a");
+            Natd.setAttribute("href", `#`);
+            Natd.setAttribute("id", "9");
+            Natd.textContent = 9;
+            Ntd.appendChild(Natd);
+            table.appendChild(Ntd);
+            
+            let Tetd = document.createElement("td");
+            let Teatd = document.createElement("a");
+            Teatd.setAttribute("href", `#`);
+            Teatd.setAttribute("id", "10");
+            Teatd.textContent = 10;
+            Tetd.appendChild(Teatd);
+            table.appendChild(Tetd);
+            
+
+            
+
+    
+
+            fetch("pagination.json")
+            .then (function (response){
+                return response.json();
+            })
+            .then (function (data){
+                appendData(data);
+            })
+            function appendData(data){
+                    let main = document.getElementById('jsonData');
+                    let id1 = document.getElementById("one");
+                    let id2 = document.getElementById("2");
+                    let id3 = document.getElementById("3");
+                    let id4 = document.getElementById("4");
+                    let id5 = document.getElementById("5");
+                    let id6 = document.getElementById("6");
+                    let id7 = document.getElementById("7");
+                    let id8 = document.getElementById("8");
+                    let id9 = document.getElementById("9");
+                    let id10 = document.getElementById("10");
+                    let pre = document.getElementById("pre");
+                    pre.addEventListener("click",function(){
+                        ftd.removeAttribute("class");
+                        Ttd.removeAttribute("class");
+                        Otd.removeAttribute("class");
+                        Htd.removeAttribute("class");
+                        fitd.removeAttribute("class");
+                        sitd.removeAttribute("class");
+                        Std.removeAttribute("class");
+                        Etd.removeAttribute("class");
+                        Ntd.removeAttribute("class");
+                        Tetd.removeAttribute("class");
+                        ptd.setAttribute("class", "active");
+                        newDiv.innerText = "";
+                        l=l-1;
+                        j=j-10;
+                        if(j>=0){
+                            change.textContent = `change : ${l}`;
+                            for (let i = j - 10; i < j; i++) {
+                                let div1 = document.createElement("div");
+                                let div2 = document.createElement("div");
+                                div1.innerHTML = "Name :" + data[i].name;
+                                div2.innerHTML = "email : " + data[i].email;
+                                main.append(div1, div2);
+                            }
+                        }
+                    });      
+                    id1.addEventListener("click",function(){
+                        ftd.setAttribute("class", "active");
+                        ptd.removeAttribute("class");
+                        Ttd.removeAttribute("class");
+                        Otd.removeAttribute("class");
+                        Htd.removeAttribute("class");
+                        fitd.removeAttribute("class");
+                        sitd.removeAttribute("class");
+                        Std.removeAttribute("class");
+                        Etd.removeAttribute("class");
+                        Ntd.removeAttribute("class");
+                        Tetd.removeAttribute("class");
+                        newDiv.innerText = "";
+                        l=1;
+                        j=10;
+                        change.textContent = `change : ${l}`;
+                        for (let i = 0; i < j; i++) {
+                            let div1 = document.createElement("div");
+                            let div2 = document.createElement("div");
+                            div1.innerHTML = "Name :" + data[i].name;
+                            div2.innerHTML = "email : " + data[i].email;
+                            main.append(div1, div2);
+                        }
+                    });      
+                    id2.addEventListener("click",function(){
+                        ftd.removeAttribute("class");
+                        ptd.removeAttribute("class");
+                        Ttd.removeAttribute("class");
+                        Otd.setAttribute("class", "active");
+                        Htd.removeAttribute("class");
+                        fitd.removeAttribute("class");
+                        sitd.removeAttribute("class");
+                        Std.removeAttribute("class");
+                        Etd.removeAttribute("class");
+                        Ntd.removeAttribute("class");
+                        Tetd.removeAttribute("class");
+                        newDiv.innerText="";
+                        l=2;
+                        j=20;
+                        change.textContent = `change : ${l}`;
+                        for (let i = 10; i < j; i++) {
+                            let div1 = document.createElement("div");
+                            let div2 = document.createElement("div");
+                            div1.innerHTML = "Name :" + data[i].name;
+                            div2.innerHTML = "email : " + data[i].email;
+                            main.append(div1, div2);
+                        }
+                    });      
+                    id3.addEventListener("click",function(){
+                        ftd.removeAttribute("class");
+                        ptd.removeAttribute("class");
+                        Otd.removeAttribute("class");
+                        Ttd.setAttribute("class", "active");
+                        Htd.removeAttribute("class");
+                        fitd.removeAttribute("class");
+                        sitd.removeAttribute("class");
+                        Std.removeAttribute("class");
+                        Etd.removeAttribute("class");
+                        Ntd.removeAttribute("class");
+                        Tetd.removeAttribute("class");
+                        newDiv.innerText="";
+                        l=3;
+                        j=30;
+                        change.textContent = `change : ${l}`;
+                        for (let i = 20; i < j; i++) {
+                            let div1 = document.createElement("div");
+                            let div2 = document.createElement("div");
+                            div1.innerHTML = "Name :" + data[i].name;
+                            div2.innerHTML = "email : " + data[i].email;
+                            main.append(div1, div2);
+                        }
+                    });      
+                    id4.addEventListener("click",function(){
+                        ftd.removeAttribute("class");
+                        ptd.removeAttribute("class");
+                        Otd.removeAttribute("class");
+                        Htd.setAttribute("class", "active");
+                        Ttd.removeAttribute("class");
+                        fitd.removeAttribute("class");
+                        sitd.removeAttribute("class");
+                        Std.removeAttribute("class");
+                        Etd.removeAttribute("class");
+                        Ntd.removeAttribute("class");
+                        Tetd.removeAttribute("class");
+                        newDiv.innerText="";
+                        l=4;
+                        j=40;
+                        change.textContent = `change : ${l}`;
+                        for (let i = 30; i < j; i++) {
+                            let div1 = document.createElement("div");
+                            let div2 = document.createElement("div");
+                            div1.innerHTML = "Name :" + data[i].name;
+                            div2.innerHTML = "email : " + data[i].email;
+                            main.append(div1, div2);
+                        }
+                    });      
+                    id5.addEventListener("click",function(){
+                        ftd.removeAttribute("class");
+                        ptd.removeAttribute("class");
+                        Otd.removeAttribute("class");
+                        fitd.setAttribute("class", "active");
+                        Htd.removeAttribute("class");
+                        Ttd.removeAttribute("class");
+                        sitd.removeAttribute("class");
+                        Std.removeAttribute("class");
+                        Etd.removeAttribute("class");
+                        Ntd.removeAttribute("class");
+                        Tetd.removeAttribute("class");
+                        newDiv.innerText="";
+                        l=5;
+                        j=50;
+                        change.textContent = `change : ${l}`;
+                        for (let i = 40; i < j; i++) {
+                            let div1 = document.createElement("div");
+                            let div2 = document.createElement("div");
+                            div1.innerHTML = "Name :" + data[i].name;
+                            div2.innerHTML = "email : " + data[i].email;
+                            main.append(div1, div2);
+                        }
+                    });      
+                    id6.addEventListener("click",function(){
+                        ftd.removeAttribute("class");
+                        ptd.removeAttribute("class");
+                        Otd.removeAttribute("class");
+                        sitd.setAttribute("class", "active");
+                        Htd.removeAttribute("class");
+                        fitd.removeAttribute("class");
+                        Ttd.removeAttribute("class");
+                        Std.removeAttribute("class");
+                        Etd.removeAttribute("class");
+                        Ntd.removeAttribute("class");
+                        Tetd.removeAttribute("class");
+                        newDiv.innerText="";
+                        l=6;
+                        j=60;
+                        change.textContent = `change : ${l}`;
+                        for (let i = 50; i < j; i++) {
+                            let div1 = document.createElement("div");
+                            let div2 = document.createElement("div");
+                            div1.innerHTML = "Name :" + data[i].name;
+                            div2.innerHTML = "email : " + data[i].email;
+                            main.append(div1, div2);
+                        }
+                    });      
+                    id7.addEventListener("click",function(){
+                        ftd.removeAttribute("class");
+                        ptd.removeAttribute("class");
+                        Otd.removeAttribute("class");
+                        Std.setAttribute("class", "active");
+                        Htd.removeAttribute("class");
+                        fitd.removeAttribute("class");
+                        sitd.removeAttribute("class");
+                        Ttd.removeAttribute("class");
+                        Etd.removeAttribute("class");
+                        Ntd.removeAttribute("class");
+                        Tetd.removeAttribute("class");
+                        newDiv.innerText="";
+                        l=7;
+                        j=70;
+                        change.textContent = `change : ${l}`;
+                        for (let i = 60; i < j; i++) {
+                            let div1 = document.createElement("div");
+                            let div2 = document.createElement("div");
+                            div1.innerHTML = "Name :" + data[i].name;
+                            div2.innerHTML = "email : " + data[i].email;
+                            main.append(div1, div2);
+                        }
+                    });      
+                    id8.addEventListener("click",function(){
+                        ftd.removeAttribute("class");
+                        ptd.removeAttribute("class");
+                        Otd.removeAttribute("class");
+                        Etd.setAttribute("class", "active");
+                        Htd.removeAttribute("class");
+                        fitd.removeAttribute("class");
+                        sitd.removeAttribute("class");
+                        Std.removeAttribute("class");
+                        Ttd.removeAttribute("class");
+                        Ntd.removeAttribute("class");
+                        Tetd.removeAttribute("class");
+                        newDiv.innerText="";
+                        l=8;
+                        j=80;
+                        change.textContent = `change : ${l}`;
+                        for (let i = 70; i < j; i++) {
+                            let div1 = document.createElement("div");
+                            let div2 = document.createElement("div");
+                            div1.innerHTML = "Name :" + data[i].name;
+                            div2.innerHTML = "email : " + data[i].email;
+                            main.append(div1, div2);
+                        }
+                    });      
+                    id9.addEventListener("click",function(){
+                        ftd.removeAttribute("class");
+                        ptd.removeAttribute("class");
+                        Otd.removeAttribute("class");
+                        Ntd.setAttribute("class", "active");
+                        Htd.removeAttribute("class");
+                        fitd.removeAttribute("class");
+                        sitd.removeAttribute("class");
+                        Std.removeAttribute("class");
+                        Etd.removeAttribute("class");
+                        Ttd.removeAttribute("class");
+                        Tetd.removeAttribute("class");
+                        newDiv.innerText="";
+                        l=9;
+                        j=90;
+                        change.textContent = `change : ${l}`;
+                        for (let i = 80; i < j; i++) {
+                            let div1 = document.createElement("div");
+                            let div2 = document.createElement("div");
+                            div1.innerHTML = "Name :" + data[i].name;
+                            div2.innerHTML = "email : " + data[i].email;
+                            main.append(div1, div2);
+                        }
+                    });      
+                    id10.addEventListener("click",function(){
+                        ftd.removeAttribute("class");
+                        ptd.removeAttribute("class");
+                        Otd.removeAttribute("class");
+                        Tetd.setAttribute("class", "active");
+                        Htd.removeAttribute("class");
+                        fitd.removeAttribute("class");
+                        sitd.removeAttribute("class");
+                        Std.removeAttribute("class");
+                        Etd.removeAttribute("class");
+                        Ntd.removeAttribute("class");
+                        Ttd.removeAttribute("class");
+                        newDiv.innerText="";
+                        l=10;
+                        j=100;
+                        change.textContent = `change : ${l}`;
+                        for (let i = 90; i < j; i++) {
+                            let div1 = document.createElement("div");
+                            let div2 = document.createElement("div");
+                            div1.innerHTML = "Name :" + data[i].name;
+                            div2.innerHTML = "email : " + data[i].email;
+                            main.append(div1, div2);
+                        }
+                    });      
+                }
+                    
+
+                let change = document.createElement("div");
+                change.textContent = `change : ${l}`;
+                document.body.appendChild(newDiv);
+                document.body.appendChild(change);
+                document.body.appendChild(table);
+
+                
+
+
+                
+                
+        </script>
+    </body>
+</html>
